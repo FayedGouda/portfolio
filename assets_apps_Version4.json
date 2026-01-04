@@ -1,0 +1,134 @@
+{
+  "apps": [
+    {
+      "name": "Tenant App",
+      "tagline": "Property and resident services in one app",
+      "description": "Property management and resident services platform enabling tenants to reserve halls, manage contracts, request services, view invoices, and interact with property management—all in one user-friendly app.",
+      "image": "assets/images/tenant-app/cover.jpg",
+      "platforms": ["iOS", "Android"],
+      "links": {
+        "ios": "https://apps.apple.com/us/app/bq-residence/id6739566822",
+        "android": "https://play.google.com/store/apps/details?id=com.pioneer.tenant.bq"
+      },
+      "highlights": [
+        "Reserve halls",
+        "Manage contracts",
+        "Request services",
+        "View invoices",
+        "Interact with property management"
+      ]
+    },
+    {
+      "name": "Self Service",
+      "tagline": "Employee HR services on your phone",
+      "description": "Access loans, advances, overtime, and time-off requests with an easy interface to submit requests, track status, and view personal information.",
+      "image": "assets/images/self-service/cover.jpg",
+      "highlights": [
+        "Submit requests",
+        "Track status",
+        "View personal info"
+      ]
+    },
+    {
+      "name": "Yalla Go",
+      "tagline": "Travel advice and booking",
+      "description": "Travel advice for hotels and guides, flight and hotel booking, and tourism company offers—all in one place.",
+      "image": "assets/images/yalla-go/cover.jpg",
+      "platforms": ["iOS"],
+      "links": {
+        "ios": "https://apps.apple.com/us/app/yallago/id6447488382"
+      },
+      "highlights": [
+        "Advice for hotels and guides",
+        "Flight & hotel booking",
+        "Tourism offers"
+      ]
+    },
+    {
+      "name": "Wastet Kheer",
+      "tagline": "Shop food, drinks, and accessories",
+      "description": "E-commerce platform for food, drinks, accessories, and more—with live order tracking and push notifications.",
+      "image": "assets/images/wastet-kheer/cover.jpg",
+      "platforms": ["iOS"],
+      "links": {
+        "ios": "https://apps.apple.com/us/app/wastetkheer/1661663343"
+      },
+      "highlights": [
+        "Live order tracking",
+        "Push notifications",
+        "Smooth shopping experience"
+      ]
+    },
+    {
+      "name": "Cocoon",
+      "tagline": "Fashion & accessories shop",
+      "description": "Fashion and accessories e-commerce app to discover and shop the latest styles.",
+      "image": "assets/images/cocoon/cover.jpg",
+      "platforms": ["iOS"],
+      "links": {
+        "ios": "https://apps.apple.com/us/app/cocoon/id6446980079"
+      },
+      "highlights": [
+        "Browse collections",
+        "Secure checkout",
+        "Fast performance"
+      ]
+    },
+    {
+      "name": "PostEx",
+      "tagline": "Track shipping and deliveries",
+      "description": "Shipping and merchandise tracking for retail, with automated delivery tracking so you always know where your package is.",
+      "image": "assets/images/postex/cover.jpg",
+      "platforms": ["iOS"],
+      "links": {
+        "ios": "https://apps.apple.com/us/app/postex/6443657287"
+      },
+      "highlights": [
+        "Real-time tracking",
+        "Notifications",
+        "Order history"
+      ]
+    },
+    {
+      "name": "Beaut",
+      "tagline": "Homemade food marketplace in Jordan",
+      "description": "Jordanian app for hand and home food—discover local sellers and order with ease.",
+      "image": "assets/images/beaut/cover.jpg",
+      "platforms": ["iOS"],
+      "links": {
+        "ios": "https://apps.apple.com/us/app/Beuat/6443587383"
+      },
+      "highlights": [
+        "Local sellers",
+        "Browse categories",
+        "Easy ordering"
+      ]
+    },
+    {
+      "name": "Shaqqty",
+      "tagline": "Real estate marketplace",
+      "description": "Buy, sell, and rent apartments with advanced search and direct communication features.",
+      "image": "assets/images/shaqqty/cover.jpg",
+      "platforms": ["iOS"],
+      "links": {
+        "ios": "https://apps.apple.com/us/app/shaqqty/6444765121"
+      },
+      "highlights": [
+        "Advanced search",
+        "Profiles",
+        "Direct communication"
+      ]
+    },
+    {
+      "name": "Takfa",
+      "tagline": "Request repair technicians",
+      "description": "Saudi app for requesting technical repair technicians with a simple, user-friendly experience.",
+      "image": "assets/images/takfa/cover.jpg",
+      "highlights": [
+        "Easy requests",
+        "Service tracking",
+        "Trusted technicians"
+      ]
+    }
+  ]
+}
