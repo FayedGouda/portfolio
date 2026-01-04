@@ -1,13 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" aria-labelledby="title desc" role="img">
+  <title>Placeholder image</title>
+  <desc>A friendly, neutral placeholder used when an app image is unavailable.</desc>
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#1f2937"/>
-      <stop offset="1" stop-color="#0f172a"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3f4f6"/>
+      <stop offset="1" stop-color="#e5e7eb"/>
+    </linearGradient>
+    <linearGradient id="frame" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9ca3af"/>
+      <stop offset="1" stop-color="#6b7280"/>
     </linearGradient>
   </defs>
-  <rect width="600" height="400" fill="url(#g)"/>
-  <g fill="#94a3b8" font-family="Inter, Arial, sans-serif" text-anchor="middle">
-    <text x="300" y="190" font-size="22">App screenshot</text>
-    <text x="300" y="220" font-size="14" fill="#cbd5e1">Image placeholder</text>
+
+  <!-- background card -->
+  <rect x="0" y="0" width="640" height="400" rx="16" fill="url(#bg)"/>
+
+  <!-- subtle border -->
+  <rect x="0.5" y="0.5" width="639" height="399" rx="16" fill="none" stroke="#d1d5db"/>
+
+  <!-- image frame icon -->
+  <g transform="translate(220,110)">
+    <rect x="0" y="0" width="200" height="180" rx="16" fill="none" stroke="url(#frame)" stroke-width="2"/>
+    <!-- sun -->
+    <circle cx="150" cy="48" r="16" fill="#cbd5e1"/>
+    <!-- hills -->
+    <path d="M24 140 L72 96 L110 132 L140 112 L176 140 Z" fill="#e5e7eb" stroke="#cbd5e1" stroke-width="1"/>
+  </g>
+
+  <!-- caption -->
+  <g fill="#6b7280" font-family="Inter, Arial, sans-serif" text-anchor="middle">
+    <text x="320" y="320" font-size="18">No image available</text>
   </g>
 </svg>

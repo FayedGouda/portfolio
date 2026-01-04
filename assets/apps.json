@@ -44,7 +44,7 @@
       "slug": "tenant",
       "tagline": "Property management and resident services",
       "description": "Tenant App is a property management and resident services platform that enables tenants to reserve halls, manage contracts, request services, view invoices, and interact with property management—all in one user-friendly mobile application.",
-      "image": "assets/images/tenant/cover.png",
+      "image": "assets/images/tenant/cover.webp",
       "platforms": [
         "iOS",
         "Android"
@@ -61,11 +61,12 @@
         "Interact with property management"
       ],
       "screenshots": [
-        "assets/images/tenant/1.jpg",
-        "assets/images/tenant/2.jpg",
-        "assets/images/tenant/3.jpg",
-        "assets/images/tenant/4.jpg",
-        "assets/images/tenant/5.jpg"
+        "assets/images/tenant/1.webp",
+        "assets/images/tenant/2.webp",
+        "assets/images/tenant/3.webp",
+        "assets/images/tenant/4.webp",
+        "assets/images/tenant/5.webp",
+        "assets/images/tenant/6.webp"
 
       ]
     },
@@ -74,7 +75,7 @@
       "slug": "self-service",
       "tagline": "Employee HR services on your phone",
       "description": "Self Service enables employees to conveniently access and manage HR services such as loans, advances, overtime, and time-off requests. Submit requests, track their status, and view personal HR information in a simple interface.",
-      "image": "assets/images/self-service/cover.jpg",
+      "image": "assets/images/self-service/cover.webp",
        "links": {
         "ios": "https://apps.apple.com/us/app/ps-self-service/id6670195880",
         "android": "https://play.google.com/store/apps/details?id=com.pioneer.psselfservice"
@@ -98,7 +99,7 @@
       "slug": "yalla-go",
       "tagline": "Travel advice and booking",
       "description": "Get travel advice for hotels and guides, book flights and hotels, and see offers from tourism companies—all in one place.",
-      "image": "assets/images/yalla-go/cover.jpg",
+      "image": "assets/images/yalla-go/cover.webp",
       "platforms": [
         "iOS"
       ],
@@ -123,7 +124,7 @@
       "slug": "wastet-kheer",
       "tagline": "Shop food, drinks, and accessories",
       "description": "Online e-commerce for buying food, drinks, accessories and more, with live order tracking and push notifications for updates.",
-      "image": "assets/images/wastet-kheer/cover.jpg",
+      "image": "assets/images/wastet-kheer/cover.webp",
       "platforms": [
         "iOS"
       ],
@@ -136,8 +137,15 @@
         "Smooth shopping experience"
       ],
       "screenshots": [
-        "assets/images/wastet-kheer/1.jpg",
-        "assets/images/wastet-kheer/2.jpg"
+        "assets/images/wastet-kheer/1.webp",
+        "assets/images/wastet-kheer/2.webp",
+        "assets/images/wastet-kheer/3.webp",
+        "assets/images/wastet-kheer/4.webp",
+        "assets/images/wastet-kheer/5.webp",
+        "assets/images/wastet-kheer/6.webp",
+        "assets/images/wastet-kheer/7.webp",
+        "assets/images/wastet-kheer/8.webp",
+        "assets/images/wastet-kheer/9.webp"
       ]
     },
     {
@@ -158,8 +166,16 @@
         "Fast performance"
       ],
       "screenshots": [
-        "assets/images/cocoon/1.jpg",
-        "assets/images/cocoon/2.jpg"
+        "assets/images/cocoon/1.png",
+        "assets/images/cocoon/2.png",
+        "assets/images/cocoon/3.png",
+        "assets/images/cocoon/4.png",
+        "assets/images/cocoon/5.png",
+        "assets/images/cocoon/6.png",
+        "assets/images/cocoon/7.png",
+        "assets/images/cocoon/8.png",
+        "assets/images/cocoon/9.png",
+        "assets/images/cocoon/10.png"
       ]
     },
     {
@@ -167,7 +183,7 @@
       "slug": "postex",
       "tagline": "Track shipping and deliveries",
       "description": "Products and merchandise shipping app for a major retail company—streamline tracking and shipping orders with automated tracking features.",
-      "image": "assets/images/postex/cover.jpg",
+      "image": "assets/images/postex/cover.webp",
       "platforms": [
         "iOS"
       ],
@@ -180,77 +196,13 @@
         "Order history"
       ],
       "screenshots": [
-        "assets/images/postex/1.jpg",
-        "assets/images/postex/2.jpg"
-      ]
-    },
-    {
-      "name": "Beaut",
-      "slug": "beaut",
-      "tagline": "Homemade food marketplace in Jordan",
-      "description": "An online Jordanian app for hand and home food—discover local sellers, browse categories, and order with ease.",
-      "image": "assets/images/beaut/cover.jpg",
-      "platforms": [
-        "iOS"
-      ],
-      "links": {
-        "ios": "https://apps.apple.com/us/app/Beuat/6443587383"
-      },
-      "highlights": [
-        "Local sellers",
-        "Browse categories",
-        "Easy ordering"
-      ],
-      "screenshots": [
-        "assets/images/beaut/1.jpg",
-        "assets/images/beaut/2.jpg"
-      ]
-    },
-    {
-      "name": "Shaqqty",
-      "slug": "shaqqty",
-      "tagline": "Real estate marketplace",
-      "description": "Buy, sell, and rent apartments with advanced search and direct communication features.",
-      "image": "assets/images/shaqqty/cover.jpg",
-      "platforms": [
-        "iOS"
-      ],
-      "links": {
-        "ios": "https://apps.apple.com/us/app/shaqqty/6444765121"
-      },
-      "highlights": [
-        "Create a user profile",
-        "Advanced search filters",
-        "View detailed apartment info",
-        "Contact owners or agents",
-        "Schedule viewings",
-        "Make offers"
-      ],
-      "screenshots": [
-        "assets/images/shaqqty/1.jpg",
-        "assets/images/shaqqty/2.jpg"
-      ]
-    },
-    {
-      "name": "Takfa",
-      "slug": "takfa",
-      "tagline": "Request technical repair technicians",
-      "description": "A Saudi app to request repair technicians. Simple, user-friendly experience to request services and track progress.",
-      "image": "assets/images/takfa/cover.jpg",
-      "platforms": [
-        "iOS"
-      ],
-      "links": {
-        "ios": "https://apps.apple.com/us/app/takfa/6444745312"
-      },
-      "highlights": [
-        "Easy service requests",
-        "Service tracking",
-        "Trusted technicians"
-      ],
-      "screenshots": [
-        "assets/images/takfa/1.jpg",
-        "assets/images/takfa/2.jpg"
+        "assets/images/postex/1.webp",
+        "assets/images/postex/2.webp",
+        "assets/images/postex/3.webp",
+        "assets/images/postex/4.webp",
+        "assets/images/postex/5.webp",
+        "assets/images/postex/6.webp",
+        "assets/images/postex/7.webp"
       ]
     }
   ]
