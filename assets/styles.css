@@ -1,0 +1,128 @@
+:root{
+  --bg:#f8fafc;
+  --panel:#ffffff;
+  --text:#0f172a;
+  --muted:#475569;
+  --outline:#e2e8f0;
+  --shadow:0 8px 24px rgba(15,23,42,0.08);
+  --primary:#2563eb;
+  --primary-600:#1d4ed8;
+  --ios:#111827;
+  --android:#0f766e;
+  --badge:#e2e8f0;
+  --link:#0ea5e9;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+.site-header{
+  background:var(--panel);
+  border-bottom:1px solid var(--outline);
+  position:sticky;top:0;z-index:20;
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.branding{display:flex;flex-direction:column}
+.brand-title{margin:0;font-size:20px}
+.brand-subtitle{margin:2px 0 0;color:var(--muted);font-size:13px}
+
+.nav a{color:var(--text);text-decoration:none;margin-left:16px;font-weight:600}
+.nav a:hover{color:var(--primary)}
+
+.hero{
+  padding:36px 0;
+  background:linear-gradient(180deg,#ffffff, #f1f5f9);
+  border-bottom:1px solid var(--outline);
+}
+.hero-inner{display:grid;grid-template-columns:1.2fr 0.8fr;gap:24px;align-items:center}
+.hero h2{margin:0 0 8px;font-size:32px}
+.hero-text{color:var(--muted);margin:0 0 18px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.button{display:inline-block;padding:12px 16px;border-radius:12px;border:1px solid var(--outline);text-decoration:none;color:var(--text);background:var(--panel);box-shadow:var(--shadow)}
+.button.primary{background:var(--primary);color:#fff;border-color:transparent}
+.button.primary:hover{background:var(--primary-600)}
+.button:hover{filter:brightness(0.98)}
+
+.hero-visual .device{
+  width:260px;height:520px;margin:0 auto;border:12px solid #111827;border-radius:40px;background:#000;box-shadow:0 16px 40px rgba(15,23,42,0.18);
+}
+.device-screen{width:100%;height:100%;border-radius:22px;background:linear-gradient(180deg,#e2e8f0,#cbd5e1)}
+
+.apps-section{padding:28px 0}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
+.section-head h3{margin:0;font-size:22px}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{
+  padding:8px 12px;border:1px solid var(--outline);border-radius:999px;background:#fff;color:var(--text);
+  cursor:pointer;font-weight:600;
+}
+.filter-btn.active{background:#eef2ff;border-color:#c7d2fe;color:#3730a3}
+
+.apps-grid{
+  display:grid;gap:24px;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--outline);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.card-media img{
+  width:100%;aspect-ratio:16 / 9;object-fit:cover;display:block;background:#e2e8f0;
+}
+.card-body{padding:16px}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.card-title{margin:0;font-size:18px}
+.platforms .badge{
+  display:inline-block;background:var(--badge);color:#0f172a;border:1px solid var(--outline);
+  padding:4px 8px;border-radius:999px;margin-right:6px;font-size:12px
+}
+.card-tagline{margin:6px 0;color:#0f172a;font-weight:600}
+.card-description{margin:8px 0;color:var(--muted)}
+.card-highlights{margin:8px 0 0;color:#0f172a;padding-left:18px}
+.card-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+
+.store-btn{
+  display:inline-block;padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:700;
+  border:1px solid var(--outline);background:#f8fafc;color:#0f172a;
+}
+.store-btn:hover{filter:brightness(0.97)}
+.store-btn.ios{background:#111827;color:#fff;border-color:#111827}
+.store-btn.android{background:#0f766e;color:#fff;border-color:#0f766e}
+
+.contact-section{
+  padding:36px 0;
+  background:#ffffff;
+  border-top:1px solid var(--outline);
+}
+.contact-list{list-style:none;padding:0;margin:12px 0 0}
+.contact-list li{margin-bottom:6px}
+.contact-list a{color:var(--primary);text-decoration:none}
+.contact-list a:hover{text-decoration:underline}
+
+.site-footer{
+  border-top:1px solid var(--outline);
+  padding:16px 0 24px;
+  color:#64748b;
+  background:#ffffff;
+}
+.error.hidden{display:none}
+.empty{color:#64748b;text-align:center;padding:20px 0}
+
+@media (max-width:860px){
+  .hero-inner{grid-template-columns:1fr;gap:18px}
+  .device{width:220px;height:440px}
+}

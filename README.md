@@ -21,16 +21,9 @@ This repository powers a simple GitHub Pages site to showcase mobile apps with s
    }
    ```
 
-2. Place your screenshot image at `assets/images/your-app/cover.jpg`. You can add more images in that folder if needed. If no image exists yet, the site will use the placeholder automatically.
+2. Place your screenshot image at `assets/images/your-app/cover.jpg`. If no image exists yet, the site will use the placeholder automatically.
 
 3. Commit and push. The site will automatically render the updated list.
-
-## Local preview
-
-You can preview locally by serving the folder:
-- Python: `python3 -m http.server`
-- Node: `npx serve`
-Then open `http://localhost:8000` (or the port printed).
 
 ## Publish via GitHub Pages
 
@@ -44,7 +37,6 @@ Then open `http://localhost:8000` (or the port printed).
 
 - Colors and layout: edit `assets/styles.css`
 - Contact info: update the links in `index.html`
-- Add sections: add new HTML blocks and styles as needed
 
 ## Accessibility
 

@@ -3,56 +3,64 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fayed Gouda — Mobile Apps Portfolio</title>
-  <meta name="description" content="Explore mobile apps by Fayed Gouda with screenshots, features, and download links." />
+  <title>Fayed Gouda — Mobile Apps</title>
+  <meta name="description" content="Browse Fayed Gouda's mobile apps with screenshots, features, and download links." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
       <div class="branding">
-        <h1>Fayed Gouda</h1>
-        <p class="tagline">Mobile apps crafted for real customers</p>
+        <h1 class="brand-title">Fayed Gouda</h1>
+        <p class="brand-subtitle">Customer-friendly mobile apps</p>
       </div>
-      <nav class="nav">
+      <nav class="nav" aria-label="Primary">
         <a href="#apps">Apps</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="container">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero-inner">
       <div class="hero-content">
-        <h2>Discover my mobile apps</h2>
-        <p>Browse screenshots, key features, and download links for iOS and Android.</p>
-        <div class="hero-cta">
-          <a class="btn primary" href="#apps">View Apps</a>
-          <a class="btn" href="https://github.com/FayedGouda" target="_blank" rel="noopener">GitHub Profile</a>
+        <h2 id="hero-title">Discover my mobile apps</h2>
+        <p class="hero-text">Simple, useful apps designed for real customers. View screenshots, features, and download links.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#apps">View Apps</a>
+          <a class="button" href="https://github.com/FayedGouda" target="_blank" rel="noopener">GitHub Profile</a>
         </div>
       </div>
-      <div class="hero-image">
-        <div class="device-frame">
-          <div class="screen shimmer"></div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="device">
+          <div class="device-screen"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <main id="apps" class="apps-section">
+  <main id="apps" class="apps-section" role="main">
     <div class="container">
-      <h3>Featured Apps</h3>
+      <div class="section-head">
+        <h3>Featured Apps</h3>
+        <div class="filters" role="tablist" aria-label="Filter by platform">
+          <button class="filter-btn active" data-filter="All" role="tab" aria-selected="true">All</button>
+          <button class="filter-btn" data-filter="iOS" role="tab" aria-selected="false">iOS</button>
+          <button class="filter-btn" data-filter="Android" role="tab" aria-selected="false">Android</button>
+        </div>
+      </div>
+
       <div id="appsGrid" class="apps-grid" aria-live="polite"></div>
       <div id="appsError" class="error hidden">Unable to load apps. Please refresh or try again later.</div>
     </div>
   </main>
 
-  <section id="contact" class="contact-section">
+  <section id="contact" class="contact-section" aria-labelledby="contact-title">
     <div class="container">
-      <h3>Get in touch</h3>
+      <h3 id="contact-title">Get in touch</h3>
       <p>Interested in a demo, collaboration, or custom app? Reach out:</p>
       <ul class="contact-list">
         <li>Email: <a href="mailto:fayed.gouda@outlook.com">fayed.gouda@outlook.com</a></li>
@@ -62,7 +70,7 @@
     </div>
   </section>
 
-  <footer class="site-footer">
+  <footer class="site-footer" role="contentinfo">
     <div class="container">
       <small>© <span id="year"></span> Fayed Gouda • All rights reserved</small>
     </div>
@@ -71,51 +79,76 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    async function loadApps() {
+    let allApps = [];
+    let currentFilter = 'All';
+
+    function renderApps(filter = 'All') {
+      currentFilter = filter;
       const grid = document.getElementById('appsGrid');
+      const apps = allApps.filter(app => {
+        if (filter === 'All') return true;
+        return (app.platforms || []).includes(filter);
+      });
+
+      if (!apps.length) {
+        grid.innerHTML = '<p class="empty">No apps found for this filter.</p>';
+        return;
+      }
+
+      grid.innerHTML = apps.map(app => {
+        const imgSrc = app.image || 'assets/images/placeholder.svg';
+        const platforms = (app.platforms || []).map(p => `<span class="badge">${p}</span>`).join('');
+        const highlights = (app.highlights || []).map(h => `<li>${h}</li>`).join('');
+        const links = `
+          ${app.links?.ios ? `<a class="store-btn ios" href="${app.links.ios}" target="_blank" rel="noopener" aria-label="${app.name} on Apple App Store">Apple App Store</a>` : ''}
+          ${app.links?.android ? `<a class="store-btn android" href="${app.links.android}" target="_blank" rel="noopener" aria-label="${app.name} on Google Play">Google Play</a>` : ''}
+          ${app.links?.website ? `<a class="store-btn" href="${app.links.website}" target="_blank" rel="noopener" aria-label="${app.name} website">Website</a>` : ''}
+        `;
+
+        return `
+          <article class="card" aria-label="${app.name}">
+            <div class="card-media">
+              <img src="${imgSrc}" alt="${app.name} screenshot" loading="lazy" onerror="this.src='assets/images/placeholder.svg';" />
+            </div>
+            <div class="card-body">
+              <div class="card-head">
+                <h4 class="card-title">${app.name}</h4>
+                ${platforms ? `<div class="platforms">${platforms}</div>` : ''}
+              </div>
+              ${app.tagline ? `<p class="card-tagline">${app.tagline}</p>` : ''}
+              ${app.description ? `<p class="card-description">${app.description}</p>` : ''}
+              ${highlights ? `<ul class="card-highlights">${highlights}</ul>` : ''}
+              <div class="card-actions">${links}</div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    async function loadApps() {
       const err = document.getElementById('appsError');
       try {
         const res = await fetch('assets/apps.json', { cache: 'no-store' });
         if (!res.ok) throw new Error('Network error');
         const data = await res.json();
-        const apps = (data.apps || []).filter(a => !!a.name);
-
-        if (!apps.length) {
-          grid.innerHTML = '<p>No apps yet. Check back soon!</p>';
-          return;
-        }
-
-        grid.innerHTML = apps.map(app => {
-          const platforms = (app.platforms || []).map(p => `<span class="badge">${p}</span>`).join('');
-          const highlights = (app.highlights || []).map(h => `<li>${h}</li>`).join('');
-          const links = `
-            ${app.links?.ios ? `<a class="store-btn ios" href="${app.links.ios}" target="_blank" rel="noopener">App Store</a>` : ''}
-            ${app.links?.android ? `<a class="store-btn android" href="${app.links.android}" target="_blank" rel="noopener">Google Play</a>` : ''}
-            ${app.links?.website ? `<a class="store-btn" href="${app.links.website}" target="_blank" rel="noopener">Website</a>` : ''}
-          `;
-          const imgSrc = app.image || 'assets/images/placeholder.svg';
-
-          return `
-            <article class="app-card">
-              <div class="app-thumb">
-                <img src="${imgSrc}" alt="${app.name} screenshot" loading="lazy" onerror="this.src='assets/images/placeholder.svg';" />
-              </div>
-              <div class="app-info">
-                <h4>${app.name}</h4>
-                ${app.tagline ? `<p class="tagline">${app.tagline}</p>` : ''}
-                ${platforms ? `<div class="platforms">${platforms}</div>` : ''}
-                ${app.description ? `<p class="description">${app.description}</p>` : ''}
-                ${highlights ? `<ul class="highlights">${highlights}</ul>` : ''}
-                <div class="links">${links}</div>
-              </div>
-            </article>
-          `;
-        }).join('');
+        allApps = (data.apps || []).filter(a => !!a.name);
+        renderApps(currentFilter);
       } catch (e) {
         console.error(e);
         err.classList.remove('hidden');
       }
     }
+
+    // Filter button interactions
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.toggle('active', b === btn);
+        b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+      });
+      renderApps(btn.dataset.filter);
+    });
 
     loadApps();
   </script>
