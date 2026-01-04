@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>App Details — Fayed Gouda</title>
   <meta name="description" content="View app details with screenshots, features, and download links." />
+  <meta name="theme-color" content="#2563eb" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -73,6 +77,19 @@
       return true;
     }
 
+    // Safe picture wrapper: only adds WebP source when provided
+    function renderPicture({ webp, fallback, alt, onclick }) {
+      if (webp && webp !== fallback) {
+        return `
+          <picture>
+            <source type="image/webp" srcset="${webp}">
+            <img src="${fallback}" alt="${alt}" loading="lazy" ${onclick ? `onclick="${onclick}"` : ""} onerror="this.src='assets/images/placeholder.svg';" />
+          </picture>
+        `;
+      }
+      return `<img src="${fallback}" alt="${alt}" loading="lazy" ${onclick ? `onclick="${onclick}"` : ""} onerror="this.src='assets/images/placeholder.svg';" />`;
+    }
+
     async function loadApp() {
       const slug = qs('app');
       const err = document.getElementById('detailError');
@@ -91,7 +108,9 @@
         const content = document.getElementById('detailContent');
         const gallery = document.getElementById('detailGallery');
 
-        const imgSrc = app.image || 'assets/images/placeholder.svg';
+        const cover = app.image || 'assets/images/placeholder.svg';
+        const coverWebp = app.imageWebp || (cover.endsWith('.webp') ? cover : null);
+
         const platforms = (app.platforms || []).map(p => `<span class="badge">${p}</span>`).join('');
         const links = `
           ${app.links?.ios ? `<a class="store-btn ios" href="${app.links.ios}" target="_blank" rel="noopener">Apple App Store</a>` : ''}
@@ -101,7 +120,7 @@
 
         hero.innerHTML = `
           <div class="detail-media">
-            <img src="${imgSrc}" alt="${app.name} cover image" onerror="this.src='assets/images/placeholder.svg';" />
+            ${renderPicture({ webp: coverWebp, fallback: cover, alt: app.name + ' cover image' })}
           </div>
           <div class="detail-head">
             <h1>${app.name}</h1>
@@ -120,13 +139,19 @@
 
         const shots = (app.screenshots || []);
         if (shots.length) {
-          const slides = shots.map((src, i) => `
-            <div class="slide" role="group" aria-label="Screenshot ${i+1} of ${shots.length}">
-              <img src="${src}" alt="Screenshot of ${app.name}" loading="lazy"
-                   onerror="this.src='assets/images/placeholder.svg';"
-                   onclick="openLightbox('${src}')" />
-            </div>
-          `).join('');
+          const slides = shots.map((src, i) => {
+            const webp = src.endsWith('.webp') ? src : null;
+            return `
+              <div class="slide" role="group" aria-label="Screenshot ${i+1} of ${shots.length}">
+                ${renderPicture({
+                  webp,
+                  fallback: src,
+                  alt: 'Screenshot of ' + app.name,
+                  onclick: `openLightbox('${src}')`
+                })}
+              </div>
+            `;
+          }).join('');
 
           gallery.innerHTML = `
             <h2>Screenshots</h2>
@@ -210,7 +235,6 @@
       prev.addEventListener('click', () => scrollToIndex(index - 1));
       next.addEventListener('click', () => scrollToIndex(index + 1));
       track.addEventListener('scroll', () => {
-        // Throttle via requestAnimationFrame
         if (track._raf) return;
         track._raf = requestAnimationFrame(() => {
           track._raf = null;
@@ -223,7 +247,6 @@
         if (e.key === 'ArrowLeft') { e.preventDefault(); scrollToIndex(index - 1); }
       });
 
-      // Initialize
       updateIndicator(index);
     }
 

@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fayed Gouda — Mobile Apps</title>
   <meta name="description" content="Browse Fayed Gouda's mobile apps with screenshots, features, and download links." />
+  <meta name="theme-color" content="#2563eb" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -63,9 +67,9 @@
       <h3 id="contact-title">Get in touch</h3>
       <p>Interested in a demo, collaboration, or custom app? Reach out:</p>
       <ul class="contact-list">
-        <li>Email: <a href="mailto:fayedgouda@gmail.com">fayedgouda@gmail.com</a></li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/in/fayed-gouda-4087b5167" target="_blank" rel="noopener">https://www.linkedin.com/in/fayed-gouda-4087b5167</a></li>
-        <li>GitHub: <a href="https://github.com/FayedGouda" target="_blank" rel="noopener">https://github.com/FayedGouda</a></li>
+        <li>Email: <a href="mailto:fayed.gouda@outlook.com">fayed.gouda@outlook.com</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/fayedgouda" target="_blank" rel="noopener">linkedin.com/in/fayedgouda</a></li>
+        <li>GitHub: <a href="https://github.com/FayedGouda" target="_blank" rel="noopener">github.com/FayedGouda</a></li>
       </ul>
     </div>
   </section>
@@ -79,7 +83,6 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Card display config
     const CARD_CONFIG = {
       showTagline: true,
       showDescription: true,
@@ -94,6 +97,19 @@
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/(^-|-$)/g, '');
+    }
+
+    // Safe picture wrapper: only adds WebP source when provided
+    function renderPicture({ webp, fallback, alt, onerror }) {
+      if (webp && webp !== fallback) {
+        return `
+          <picture>
+            <source type="image/webp" srcset="${webp}">
+            <img src="${fallback}" alt="${alt}" loading="lazy" ${onerror ? `onerror="${onerror}"` : ""} />
+          </picture>
+        `;
+      }
+      return `<img src="${fallback}" alt="${alt}" loading="lazy" ${onerror ? `onerror="${onerror}"` : ""} />`;
     }
 
     function renderApps(filter = 'All') {
@@ -111,6 +127,9 @@
 
       grid.innerHTML = apps.map(app => {
         const imgSrc = app.image || 'assets/images/placeholder.svg';
+        // Optional WebP cover if provided (add imageWebp in apps.json to use)
+        const webpSrc = app.imageWebp || (imgSrc.endsWith('.webp') ? imgSrc : null);
+
         const platforms = (app.platforms || []).map(p => `<span class="badge">${p}</span>`).join('');
         const slug = app.slug || slugify(app.name);
         const storeLinks = `
@@ -121,7 +140,12 @@
         return `
           <article class="card" aria-label="${app.name}">
             <div class="card-media">
-              <img src="${imgSrc}" alt="${app.name} screenshot" loading="lazy" onerror="this.src='assets/images/placeholder.svg';" />
+              ${renderPicture({
+                webp: webpSrc,
+                fallback: imgSrc,
+                alt: `${app.name} screenshot`,
+                onerror: "this.src='assets/images/placeholder.svg';"
+              })}
             </div>
             <div class="card-body compact">
               <div class="card-head">
