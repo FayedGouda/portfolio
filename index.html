@@ -63,9 +63,9 @@
       <h3 id="contact-title">Get in touch</h3>
       <p>Interested in a demo, collaboration, or custom app? Reach out:</p>
       <ul class="contact-list">
-        <li>Email: <a href="mailto:fayed.gouda@outlook.com">fayed.gouda@outlook.com</a></li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/in/fayedgouda" target="_blank" rel="noopener">linkedin.com/in/fayedgouda</a></li>
-        <li>GitHub: <a href="https://github.com/FayedGouda" target="_blank" rel="noopener">github.com/FayedGouda</a></li>
+        <li>Email: <a href="mailto:fayedgouda@gmail.com">fayedgouda@gmail.com</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/fayed-gouda-4087b5167" target="_blank" rel="noopener">https://www.linkedin.com/in/fayed-gouda-4087b5167</a></li>
+        <li>GitHub: <a href="https://github.com/FayedGouda" target="_blank" rel="noopener">https://github.com/FayedGouda</a></li>
       </ul>
     </div>
   </section>
@@ -79,8 +79,22 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Card display config
+    const CARD_CONFIG = {
+      showTagline: true,
+      showDescription: true,
+      showStoreButtons: true
+    };
+
     let allApps = [];
     let currentFilter = 'All';
+
+    function slugify(name) {
+      return (name || '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+    }
 
     function renderApps(filter = 'All') {
       currentFilter = filter;
@@ -98,11 +112,10 @@
       grid.innerHTML = apps.map(app => {
         const imgSrc = app.image || 'assets/images/placeholder.svg';
         const platforms = (app.platforms || []).map(p => `<span class="badge">${p}</span>`).join('');
-        const highlights = (app.highlights || []).map(h => `<li>${h}</li>`).join('');
-        const links = `
-          ${app.links?.ios ? `<a class="store-btn ios" href="${app.links.ios}" target="_blank" rel="noopener" aria-label="${app.name} on Apple App Store">Apple App Store</a>` : ''}
-          ${app.links?.android ? `<a class="store-btn android" href="${app.links.android}" target="_blank" rel="noopener" aria-label="${app.name} on Google Play">Google Play</a>` : ''}
-          ${app.links?.website ? `<a class="store-btn" href="${app.links.website}" target="_blank" rel="noopener" aria-label="${app.name} website">Website</a>` : ''}
+        const slug = app.slug || slugify(app.name);
+        const storeLinks = `
+          ${app.links?.ios && CARD_CONFIG.showStoreButtons ? `<a class="store-btn ios" href="${app.links.ios}" target="_blank" rel="noopener" aria-label="${app.name} on Apple App Store">App Store</a>` : ''}
+          ${app.links?.android && CARD_CONFIG.showStoreButtons ? `<a class="store-btn android" href="${app.links.android}" target="_blank" rel="noopener" aria-label="${app.name} on Google Play">Google Play</a>` : ''}
         `;
 
         return `
@@ -110,15 +123,17 @@
             <div class="card-media">
               <img src="${imgSrc}" alt="${app.name} screenshot" loading="lazy" onerror="this.src='assets/images/placeholder.svg';" />
             </div>
-            <div class="card-body">
+            <div class="card-body compact">
               <div class="card-head">
                 <h4 class="card-title">${app.name}</h4>
                 ${platforms ? `<div class="platforms">${platforms}</div>` : ''}
               </div>
-              ${app.tagline ? `<p class="card-tagline">${app.tagline}</p>` : ''}
-              ${app.description ? `<p class="card-description">${app.description}</p>` : ''}
-              ${highlights ? `<ul class="card-highlights">${highlights}</ul>` : ''}
-              <div class="card-actions">${links}</div>
+              ${CARD_CONFIG.showTagline && app.tagline ? `<p class="card-tagline">${app.tagline}</p>` : ''}
+              ${CARD_CONFIG.showDescription && app.description ? `<p class="card-description line-clamp-2">${app.description}</p>` : ''}
+              <div class="card-actions">
+                ${storeLinks}
+                <a class="button" href="app.html?app=${encodeURIComponent(slug)}" aria-label="View details for ${app.name}">Details</a>
+              </div>
             </div>
           </article>
         `;

@@ -1,45 +1,39 @@
 # Customer-Facing Mobile Apps Portfolio
 
-This repository powers a simple GitHub Pages site to showcase mobile apps with screenshots, descriptions, and download links. It is designed for customers, not developers.
+This repository powers a GitHub Pages site showcasing mobile apps with screenshots, descriptions, and download links. It is designed for customers.
 
-## How to add or edit apps
+## Adding apps and screenshots
 
-1. Add your app entry in [`assets/apps.json`](assets/apps.json) using this structure:
-   ```json
-   {
-     "name": "Your App Name",
-     "tagline": "Short value proposition",
-     "description": "Customer-friendly description of your app (avoid technical jargon).",
-     "image": "assets/images/your-app/cover.jpg",
-     "platforms": ["iOS", "Android"],
-     "links": {
-       "ios": "https://apps.apple.com/app/id...",
-       "android": "https://play.google.com/store/apps/details?id=...",
-       "website": "https://yourappsite.com"
-     },
-     "highlights": ["Feature 1", "Feature 2", "Feature 3"]
-   }
-   ```
+- Edit `assets/apps.json` and add:
+  - `slug`: short URL-friendly identifier (e.g., `tenant-app`)
+  - `screenshots`: list of image paths
+  - Optional `demo`: `{ "type": "youtube" | "mp4", "url": "..." }`
 
-2. Place your screenshot image at `assets/images/your-app/cover.jpg`. If no image exists yet, the site will use the placeholder automatically.
+- Place images under `assets/images/<slug>/`:
+  - `cover.jpg` (main image)
+  - `1.jpg`, `2.jpg`, `3.jpg`... (screenshots)
 
-3. Commit and push. The site will automatically render the updated list.
+- The detail page is at `app.html?app=<slug>` and will render screenshots in a gallery. Clicking a screenshot opens a lightbox. If `demo` is set, a video is embedded.
 
 ## Publish via GitHub Pages
 
-1. Go to the repository Settings → Pages.
-2. Set Source to `Deploy from a branch`.
-3. Choose `main` (or your default branch) and `/root`.
-4. Save. Your site will be available at:
-   - `https://fayedgouda.github.io/portfolio`
+Settings → Pages → “Deploy from a branch” → Branch: `main` → Folder: `/root`.  
+Site URL: `https://fayedgouda.github.io/portfolio`
 
-## Customization
+## Importing projects from a CV
 
-- Colors and layout: edit `assets/styles.css`
-- Contact info: update the links in `index.html`
+Paste your projects using this JSON template and commit to `assets/apps.json`, or send the CV text and I’ll convert it:
 
-## Accessibility
-
-- Images include alt text
-- Buttons have clear labels
-- High-contrast, responsive design
+```json
+{
+  "name": "App Name",
+  "slug": "app-name",
+  "tagline": "Short value proposition",
+  "description": "Customer-friendly description.",
+  "platforms": ["iOS","Android"],
+  "links": { "ios": "...", "android": "...", "website": "..." },
+  "highlights": ["Feature 1","Feature 2"],
+  "screenshots": ["assets/images/app-name/1.jpg","assets/images/app-name/2.jpg"],
+  "demo": { "type": "youtube", "url": "https://www.youtube.com/watch?v=VIDEO_ID" }
+}
+```

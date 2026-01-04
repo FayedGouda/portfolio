@@ -1,13 +1,56 @@
 {
   "apps": [
     {
-      "name": "Tenant App",
-      "tagline": "Property and resident services in one app",
-      "description": "Property management and resident services platform enabling tenants to reserve halls, manage contracts, request services, view invoices, and interact with property management—all in one user-friendly app.",
-      "image": "assets/images/tenant-app/cover.jpg",
-      "platforms": ["iOS", "Android"],
+      "name": "Mas Logistics",
+      "slug": "mas-logistics",
+      "tagline": "Simplify warehouse, pickings & contract management",
+      "description": "Mas Logistics is a fast, modern app that simplifies warehouse operations and contract management for teams of any size. Get real-time visibility into inventory, pickings and contract status, assign tasks, and track progress — all from a single, intuitive dashboard.\n\nKey features:\n\n- Centralized dashboard with live KPIs and alerts.\n- Fast pickings management: assign, scan and complete tasks with minimal taps.\n- Inventory & stock history: review movements, adjustments, and trends.\n- Contracts and contract details: manage sites, store types and service levels.\n- Flexible reports and exports for quick analysis.\n\nBuilt for field teams and warehouse managers, Mas Logistics speeds up daily operations, reduces picking errors and improves stock accuracy so your team can deliver faster with fewer mistakes.",
+      "image": "assets/images/mas-logistics/cover.png",
+      "platforms": [
+        "iOS",
+        "Android"
+      ],
       "links": {
-        "ios": "https://apps.apple.com/us/app/bq-residence/id6739566822",
+        "ios": "https://apps.apple.com/us/app/mas-logistics/id6754323788",
+        "android": "https://play.google.com/store/apps/details?id=com.pioneer.mas"
+      },
+      "highlights": [
+        "Easy service requests",
+        "Service tracking",
+        "Trusted technicians",
+        "Inventory",
+        "Picking",
+        "Stock",
+        "Logistics",
+        "Lot tracking",
+        "Report",
+        "Business",
+        "Productivity",
+        "Delivery"
+      ],
+      "screenshots": [
+        "assets/images/mas-logistics/1.png",
+        "assets/images/mas-logistics/2.png",
+        "assets/images/mas-logistics/3.png",
+        "assets/images/mas-logistics/4.png",
+        "assets/images/mas-logistics/5.png",
+        "assets/images/mas-logistics/6.png",
+        "assets/images/mas-logistics/7.png",
+        "assets/images/mas-logistics/8.png"
+      ]
+    },
+    {
+      "name": "Tenant App",
+      "slug": "tenant",
+      "tagline": "Property management and resident services",
+      "description": "Tenant App is a property management and resident services platform that enables tenants to reserve halls, manage contracts, request services, view invoices, and interact with property management—all in one user-friendly mobile application.",
+      "image": "assets/images/tenant/cover.png",
+      "platforms": [
+        "iOS",
+        "Android"
+      ],
+      "links": {
+        "ios": "https://apps.apple.com/us/app/the-business-quarter/id6739566822",
         "android": "https://play.google.com/store/apps/details?id=com.pioneer.tenant.bq"
       },
       "highlights": [
@@ -16,40 +59,74 @@
         "Request services",
         "View invoices",
         "Interact with property management"
+      ],
+      "screenshots": [
+        "assets/images/tenant/1.jpg",
+        "assets/images/tenant/2.jpg",
+        "assets/images/tenant/3.jpg",
+        "assets/images/tenant/4.jpg",
+        "assets/images/tenant/5.jpg"
+
       ]
     },
     {
       "name": "Self Service",
+      "slug": "self-service",
       "tagline": "Employee HR services on your phone",
-      "description": "Access loans, advances, overtime, and time-off requests with an easy interface to submit requests, track status, and view personal information.",
+      "description": "Self Service enables employees to conveniently access and manage HR services such as loans, advances, overtime, and time-off requests. Submit requests, track their status, and view personal HR information in a simple interface.",
       "image": "assets/images/self-service/cover.jpg",
+       "links": {
+        "ios": "https://apps.apple.com/us/app/ps-self-service/id6670195880",
+        "android": "https://play.google.com/store/apps/details?id=com.pioneer.psselfservice"
+      },
       "highlights": [
-        "Submit requests",
-        "Track status",
-        "View personal info"
+        "Submit HR requests",
+        "Track request status",
+        "View personal HR information"
+      ],
+      "screenshots": [
+        "assets/images/self-service/1.png",
+        "assets/images/self-service/2.png",
+        "assets/images/self-service/3.png",
+        "assets/images/self-service/4.png",
+        "assets/images/self-service/5.png",
+        "assets/images/self-service/6.png"
       ]
     },
     {
       "name": "Yalla Go",
+      "slug": "yalla-go",
       "tagline": "Travel advice and booking",
-      "description": "Travel advice for hotels and guides, flight and hotel booking, and tourism company offers—all in one place.",
+      "description": "Get travel advice for hotels and guides, book flights and hotels, and see offers from tourism companies—all in one place.",
       "image": "assets/images/yalla-go/cover.jpg",
-      "platforms": ["iOS"],
+      "platforms": [
+        "iOS"
+      ],
       "links": {
         "ios": "https://apps.apple.com/us/app/yallago/id6447488382"
       },
       "highlights": [
         "Advice for hotels and guides",
         "Flight & hotel booking",
-        "Tourism offers"
+        "Tourism company offers"
+      ],
+      "screenshots": [
+        "assets/images/yalla-go/1.webp",
+        "assets/images/yalla-go/2.webp",
+        "assets/images/yalla-go/3.webp",
+        "assets/images/yalla-go/4.webp",
+        "assets/images/yalla-go/5.webp"
       ]
     },
     {
       "name": "Wastet Kheer",
+      "slug": "wastet-kheer",
       "tagline": "Shop food, drinks, and accessories",
-      "description": "E-commerce platform for food, drinks, accessories, and more—with live order tracking and push notifications.",
+      "description": "Online e-commerce for buying food, drinks, accessories and more, with live order tracking and push notifications for updates.",
       "image": "assets/images/wastet-kheer/cover.jpg",
-      "platforms": ["iOS"],
+      "platforms": [
+        "iOS"
+      ],
       "links": {
         "ios": "https://apps.apple.com/us/app/wastetkheer/1661663343"
       },
@@ -57,14 +134,21 @@
         "Live order tracking",
         "Push notifications",
         "Smooth shopping experience"
+      ],
+      "screenshots": [
+        "assets/images/wastet-kheer/1.jpg",
+        "assets/images/wastet-kheer/2.jpg"
       ]
     },
     {
       "name": "Cocoon",
-      "tagline": "Fashion & accessories shop",
-      "description": "Fashion and accessories e-commerce app to discover and shop the latest styles.",
+      "slug": "cocoon",
+      "tagline": "Fashion & accessories shopping",
+      "description": "Selling products and accessories—discover the latest fashion and more in a fast, easy-to-use shopping experience.",
       "image": "assets/images/cocoon/cover.jpg",
-      "platforms": ["iOS"],
+      "platforms": [
+        "iOS"
+      ],
       "links": {
         "ios": "https://apps.apple.com/us/app/cocoon/id6446980079"
       },
@@ -72,29 +156,43 @@
         "Browse collections",
         "Secure checkout",
         "Fast performance"
+      ],
+      "screenshots": [
+        "assets/images/cocoon/1.jpg",
+        "assets/images/cocoon/2.jpg"
       ]
     },
     {
       "name": "PostEx",
+      "slug": "postex",
       "tagline": "Track shipping and deliveries",
-      "description": "Shipping and merchandise tracking for retail, with automated delivery tracking so you always know where your package is.",
+      "description": "Products and merchandise shipping app for a major retail company—streamline tracking and shipping orders with automated tracking features.",
       "image": "assets/images/postex/cover.jpg",
-      "platforms": ["iOS"],
+      "platforms": [
+        "iOS"
+      ],
       "links": {
         "ios": "https://apps.apple.com/us/app/postex/6443657287"
       },
       "highlights": [
         "Real-time tracking",
-        "Notifications",
+        "Delivery notifications",
         "Order history"
+      ],
+      "screenshots": [
+        "assets/images/postex/1.jpg",
+        "assets/images/postex/2.jpg"
       ]
     },
     {
       "name": "Beaut",
+      "slug": "beaut",
       "tagline": "Homemade food marketplace in Jordan",
-      "description": "Jordanian app for hand and home food—discover local sellers and order with ease.",
+      "description": "An online Jordanian app for hand and home food—discover local sellers, browse categories, and order with ease.",
       "image": "assets/images/beaut/cover.jpg",
-      "platforms": ["iOS"],
+      "platforms": [
+        "iOS"
+      ],
       "links": {
         "ios": "https://apps.apple.com/us/app/Beuat/6443587383"
       },
@@ -102,32 +200,57 @@
         "Local sellers",
         "Browse categories",
         "Easy ordering"
+      ],
+      "screenshots": [
+        "assets/images/beaut/1.jpg",
+        "assets/images/beaut/2.jpg"
       ]
     },
     {
       "name": "Shaqqty",
+      "slug": "shaqqty",
       "tagline": "Real estate marketplace",
       "description": "Buy, sell, and rent apartments with advanced search and direct communication features.",
       "image": "assets/images/shaqqty/cover.jpg",
-      "platforms": ["iOS"],
+      "platforms": [
+        "iOS"
+      ],
       "links": {
         "ios": "https://apps.apple.com/us/app/shaqqty/6444765121"
       },
       "highlights": [
-        "Advanced search",
-        "Profiles",
-        "Direct communication"
+        "Create a user profile",
+        "Advanced search filters",
+        "View detailed apartment info",
+        "Contact owners or agents",
+        "Schedule viewings",
+        "Make offers"
+      ],
+      "screenshots": [
+        "assets/images/shaqqty/1.jpg",
+        "assets/images/shaqqty/2.jpg"
       ]
     },
     {
       "name": "Takfa",
-      "tagline": "Request repair technicians",
-      "description": "Saudi app for requesting technical repair technicians with a simple, user-friendly experience.",
+      "slug": "takfa",
+      "tagline": "Request technical repair technicians",
+      "description": "A Saudi app to request repair technicians. Simple, user-friendly experience to request services and track progress.",
       "image": "assets/images/takfa/cover.jpg",
+      "platforms": [
+        "iOS"
+      ],
+      "links": {
+        "ios": "https://apps.apple.com/us/app/takfa/6444745312"
+      },
       "highlights": [
-        "Easy requests",
+        "Easy service requests",
         "Service tracking",
         "Trusted technicians"
+      ],
+      "screenshots": [
+        "assets/images/takfa/1.jpg",
+        "assets/images/takfa/2.jpg"
       ]
     }
   ]

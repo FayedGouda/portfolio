@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>App Details — Fayed Gouda</title>
+  <meta name="description" content="View app details with screenshots, features, and download links." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-title back-link" href="index.html" rel="prev" aria-label="Back to Apps" onclick="return goBack(event)"><span aria-hidden="true">←</span> Back to Apps</a>
+    </div>
+  </header>
+
+  <main id="appPage" class="detail-section" role="main">
+    <div class="container">
+      <div id="detailHero" class="detail-hero"></div>
+      <div id="detailContent" class="detail-content"></div>
+      <div id="detailGallery" class="gallery"></div>
+      <div id="detailError" class="error hidden">App not found.</div>
+    </div>
+  </main>
+
+  <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+    <button class="lightbox-close" aria-label="Close" onclick="closeLightbox()">×</button>
+    <img id="lightboxImg" alt="Expanded screenshot">
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> Fayed Gouda • All rights reserved</small>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function qs(name) {
+      const p = new URLSearchParams(location.search);
+      return p.get(name);
+    }
+    function slugify(name) {
+      return (name || '').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+    }
+    function openLightbox(src) {
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lightboxImg');
+      img.src = src;
+      lb.classList.remove('hidden');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.add('hidden');
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    function goBack(e) {
+      const ref = document.referrer;
+      try {
+        const sameOrigin = ref && new URL(ref).origin === location.origin;
+        if (sameOrigin) {
+          e && e.preventDefault && e.preventDefault();
+          history.back();
+          return false;
+        }
+      } catch (_) {}
+      return true;
+    }
+
+    async function loadApp() {
+      const slug = qs('app');
+      const err = document.getElementById('detailError');
+      try {
+        const res = await fetch('assets/apps.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('Network error');
+        const data = await res.json();
+        const apps = (data.apps || []);
+        const app = apps.find(a => (a.slug || slugify(a.name)) === slug);
+        if (!app) {
+          err.classList.remove('hidden');
+          return;
+        }
+
+        const hero = document.getElementById('detailHero');
+        const content = document.getElementById('detailContent');
+        const gallery = document.getElementById('detailGallery');
+
+        const imgSrc = app.image || 'assets/images/placeholder.svg';
+        const platforms = (app.platforms || []).map(p => `<span class="badge">${p}</span>`).join('');
+        const links = `
+          ${app.links?.ios ? `<a class="store-btn ios" href="${app.links.ios}" target="_blank" rel="noopener">Apple App Store</a>` : ''}
+          ${app.links?.android ? `<a class="store-btn android" href="${app.links.android}" target="_blank" rel="noopener">Google Play</a>` : ''}
+          ${app.links?.website ? `<a class="store-btn" href="${app.links.website}" target="_blank" rel="noopener">Website</a>` : ''}
+        `;
+
+        hero.innerHTML = `
+          <div class="detail-media">
+            <img src="${imgSrc}" alt="${app.name} cover image" onerror="this.src='assets/images/placeholder.svg';" />
+          </div>
+          <div class="detail-head">
+            <h1>${app.name}</h1>
+            ${platforms ? `<div class="platforms">${platforms}</div>` : ''}
+            ${app.tagline ? `<p class="detail-tagline">${app.tagline}</p>` : ''}
+            <div class="detail-actions">${links}</div>
+          </div>
+        `;
+
+        const highlights = (app.highlights || []).map(h => `<li>${h}</li>`).join('');
+        content.innerHTML = `
+          ${app.description ? `<p class="detail-description">${app.description}</p>` : ''}
+          ${highlights ? `<div class="detail-highlights"><h2>Highlights</h2><ul>${highlights}</ul></div>` : ''}
+          ${(app.demo?.type && app.demo?.url) ? renderDemo(app.demo) : ''}
+        `;
+
+        const shots = (app.screenshots || []);
+        if (shots.length) {
+          const slides = shots.map((src, i) => `
+            <div class="slide" role="group" aria-label="Screenshot ${i+1} of ${shots.length}">
+              <img src="${src}" alt="Screenshot of ${app.name}" loading="lazy"
+                   onerror="this.src='assets/images/placeholder.svg';"
+                   onclick="openLightbox('${src}')" />
+            </div>
+          `).join('');
+
+          gallery.innerHTML = `
+            <h2>Screenshots</h2>
+            <div class="slider" role="region" aria-label="Screenshots carousel">
+              <button class="slider-nav prev" aria-label="Previous screenshot">‹</button>
+              <div class="slider-track" tabindex="0">
+                ${slides}
+              </div>
+              <button class="slider-nav next" aria-label="Next screenshot">›</button>
+              <div class="slider-indicator" aria-live="polite">1 / ${shots.length}</div>
+            </div>
+          `;
+
+          initSlider(gallery.querySelector('.slider'));
+        } else {
+          gallery.innerHTML = '';
+        }
+      } catch (e) {
+        console.error(e);
+        err.classList.remove('hidden');
+      }
+    }
+
+    function renderDemo(demo) {
+      if (demo.type === 'youtube') {
+        const u = new URL(demo.url);
+        const id = u.searchParams.get('v') || demo.url.split('/').pop();
+        return `
+          <div class="detail-demo">
+            <h2>Demo Video</h2>
+            <div class="video-wrap">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/${id}" title="Demo video"
+                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+        `;
+      }
+      if (demo.type === 'mp4') {
+        return `
+          <div class="detail-demo">
+            <h2>Demo Video</h2>
+            <video class="video" controls preload="metadata">
+              <source src="${demo.url}" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        `;
+      }
+      return '';
+    }
+
+    function initSlider(sliderEl) {
+      const track = sliderEl.querySelector('.slider-track');
+      const slides = Array.from(sliderEl.querySelectorAll('.slide'));
+      const prev = sliderEl.querySelector('.prev');
+      const next = sliderEl.querySelector('.next');
+      const indicator = sliderEl.querySelector('.slider-indicator');
+      let index = 0;
+
+      function updateIndicator(i) {
+        indicator.textContent = `${i + 1} / ${slides.length}`;
+      }
+      function scrollToIndex(i) {
+        index = Math.max(0, Math.min(i, slides.length - 1));
+        const target = slides[index];
+        track.scrollTo({ left: target.offsetLeft - track.offsetLeft, behavior: 'smooth' });
+        updateIndicator(index);
+      }
+      function nearestIndex() {
+        const scrollLeft = track.scrollLeft;
+        let nearest = 0;
+        let minDelta = Infinity;
+        slides.forEach((s, i) => {
+          const delta = Math.abs(s.offsetLeft - scrollLeft);
+          if (delta < minDelta) { minDelta = delta; nearest = i; }
+        });
+        return nearest;
+      }
+
+      prev.addEventListener('click', () => scrollToIndex(index - 1));
+      next.addEventListener('click', () => scrollToIndex(index + 1));
+      track.addEventListener('scroll', () => {
+        // Throttle via requestAnimationFrame
+        if (track._raf) return;
+        track._raf = requestAnimationFrame(() => {
+          track._raf = null;
+          index = nearestIndex();
+          updateIndicator(index);
+        });
+      });
+      track.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); scrollToIndex(index + 1); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); scrollToIndex(index - 1); }
+      });
+
+      // Initialize
+      updateIndicator(index);
+    }
+
+    loadApp();
+  </script>
+</body>
+</html>
